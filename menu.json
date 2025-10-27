@@ -1,0 +1,241 @@
+[
+  {
+    "ordem": 0,
+    "nome": "Comercial",
+    "descricao": "Resultados comerciais e acompanhamento estratégico.",
+    "paineis": [
+      {
+        "ordem": 0,
+        "nome": "Acompanhamento Metas",
+        "descricao": "Performance contra metas por canal, produto e período.",
+        "thumb": "Metas",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 1,
+        "nome": "Mapa Estratégico",
+        "descricao": "Indicadores estratégicos alinhados ao plano comercial.",
+        "thumb": "Mapa",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 2,
+        "nome": "Share Mercado",
+        "descricao": "Participação de mercado e posicionamento competitivo.",
+        "thumb": "Share",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 3,
+        "nome": "Produção Analítica",
+        "descricao": "Detalhe da produção com visão analítica por carteira.",
+        "thumb": "Produção",
+        "embedUrl": ""
+      }
+    ]
+  },
+  {
+    "ordem": 1,
+    "nome": "Marketing",
+    "descricao": "Campanhas, captação e qualidade dos leads.",
+    "paineis": [
+      {
+        "ordem": 0,
+        "nome": "Retorno de Campanhas",
+        "descricao": "ROI, custos e resultados das campanhas em andamento.",
+        "thumb": "Campanhas",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 1,
+        "nome": "Pottencialize",
+        "descricao": "Indicadores-chave do programa Pottenccialize.",
+        "thumb": "Pottencialize",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 2,
+        "nome": "KPIs Qualidade",
+        "descricao": "Métricas de qualidade e conversão dos leads gerados.",
+        "thumb": "Qualidade",
+        "embedUrl": ""
+      }
+    ]
+  },
+  {
+    "ordem": 2,
+    "nome": "Produto",
+    "descricao": "Desempenho do portfólio e evolução das ofertas.",
+    "paineis": [
+      {
+        "ordem": 0,
+        "nome": "Funil de Vendas",
+        "descricao": "Análise do funil de vendas por produto e etapa.",
+        "thumb": "Funil",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 1,
+        "nome": "Renovação Atualização",
+        "descricao": "Taxas de renovação e atualizações de contratos.",
+        "thumb": "Renovação",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 2,
+        "nome": "KPIs por Produto",
+        "descricao": "KPIs principais detalhados por produto.",
+        "thumb": "KPIs Produto",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 3,
+        "nome": "Pricing",
+        "descricao": "Monitoramento de preços, elasticidade e ajustes.",
+        "thumb": "Pricing",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 4,
+        "nome": "Atuarial",
+        "descricao": "Modelagens atuariais e projeções de carteira.",
+        "thumb": "Atuarial",
+        "embedUrl": ""
+      }
+    ]
+  },
+  {
+    "ordem": 3,
+    "nome": "Operação",
+    "descricao": "Eficiência operacional e gestão de processos.",
+    "paineis": [
+      {
+        "ordem": 0,
+        "nome": "Financeiro",
+        "descricao": "Fluxos financeiros operacionais e conciliações.",
+        "thumb": "Financeiro",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 1,
+        "nome": "Subscrição",
+        "descricao": "Análise de produtividade e qualidade da subscrição.",
+        "thumb": "Subscrição",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 2,
+        "nome": "Acúmulo",
+        "descricao": "Controle de acúmulos e exposição por carteira.",
+        "thumb": "Acúmulo",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 3,
+        "nome": "Resseguro",
+        "descricao": "Resultados e limites de resseguro.",
+        "thumb": "Resseguro",
+        "embedUrl": ""
+      }
+    ]
+  },
+  {
+    "ordem": 4,
+    "nome": "Tecnologia",
+    "descricao": "Monitoramento de plataformas e operações digitais.",
+    "paineis": [
+      {
+        "ordem": 0,
+        "nome": "Uso das APIs",
+        "descricao": "Consumo, performance e disponibilidade das APIs.",
+        "thumb": "APIs",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 1,
+        "nome": "Monitoramento Carga de Dados",
+        "descricao": "Status das cargas e saúde dos pipelines de dados.",
+        "thumb": "Cargas",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 2,
+        "nome": "Qualidade",
+        "descricao": "Indicadores de qualidade e confiabilidade tecnológica.",
+        "thumb": "Qualidade",
+        "embedUrl": ""
+      }
+    ]
+  },
+  {
+    "ordem": 5,
+    "nome": "Sinistro",
+    "descricao": "Visão completa do ciclo de sinistros.",
+    "paineis": [
+      {
+        "ordem": 0,
+        "nome": "Avisos Expectativas",
+        "descricao": "Abertura de avisos e expectativas de sinistros.",
+        "thumb": "Avisos",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 1,
+        "nome": "Indenizações Recuperado",
+        "descricao": "Pagamentos, recuperações e tempos de atendimento.",
+        "thumb": "Indenizações",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 2,
+        "nome": "Provisionamento",
+        "descricao": "Provisões técnicas e evolução por carteira.",
+        "thumb": "Provisionamento",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 3,
+        "nome": "Sinistralidade",
+        "descricao": "Taxa de sinistralidade por produto e segmento.",
+        "thumb": "Sinistralidade",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 4,
+        "nome": "Resultado",
+        "descricao": "Resultado operacional e margens relacionadas a sinistros.",
+        "thumb": "Resultado",
+        "embedUrl": ""
+      }
+    ]
+  },
+  {
+    "ordem": 6,
+    "nome": "Atendimento",
+    "descricao": "Indicadores de atendimento ao cliente.",
+    "paineis": [
+      {
+        "ordem": 0,
+        "nome": "Classificação de Filas",
+        "descricao": "Distribuição e priorização das filas de atendimento.",
+        "thumb": "Filas",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 1,
+        "nome": "KPIs Atendimento",
+        "descricao": "Níveis de serviço, volumes e satisfação do atendimento.",
+        "thumb": "KPIs Atendimento",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 2,
+        "nome": "Chatbot",
+        "descricao": "Eficiência e resultados dos canais automatizados.",
+        "thumb": "Chatbot",
+        "embedUrl": ""
+      }
+    ]
+  }
+]
+
