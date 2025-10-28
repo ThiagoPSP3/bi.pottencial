@@ -448,7 +448,7 @@
       <nav>
         <div class="logo">
           <a href="#" class="logo-link" data-action="go-home" aria-label="Voltar para o início">
-            <img src="logo.png" alt="Pottencial BI Hub" />
+            <img src="https://attachments.gupy.io/production/companies/29737/career/70729/images/2024-02-27_17-38_companyLogoUrl.jpg" alt="Pottencial BI Hub" />
           </a>
         </div>
         <div class="nav-items" id="themeNav"></div>
@@ -489,6 +489,280 @@
 
     <script>
       let data = [];
+      const RAW_MENU_DATA = [
+        {
+          "ordem": 0,
+          "nome": "Home",
+          "descricao": "Painel Com informações gerais para estar na home",
+          "embedUrl": ""
+        },
+        {
+          "ordem": 1,
+          "nome": "Comercial",
+          "descricao": "Resultados comerciais e acompanhamento estratégico.",
+          "paineis": [
+            {
+              "ordem": 0,
+              "nome": "Acompanhamento Metas",
+              "descricao": "Performance contra metas por canal, produto e período.",
+              "thumb": "Metas",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 1,
+              "nome": "Mapa Estratégico",
+              "descricao": "Indicadores estratégicos alinhados ao plano comercial.",
+              "thumb": "Mapa",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 2,
+              "nome": "Share Mercado",
+              "descricao": "Participação de mercado e posicionamento competitivo.",
+              "thumb": "Share",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 3,
+              "nome": "Produção Analítica",
+              "descricao": "Detalhe da produção com visão analítica por carteira.",
+              "thumb": "Produção",
+              "embedUrl": ""
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "nome": "Marketing",
+          "descricao": "Campanhas, captação e qualidade dos leads.",
+          "paineis": [
+            {
+              "ordem": 0,
+              "nome": "Retorno de Campanhas",
+              "descricao": "ROI, custos e resultados das campanhas em andamento.",
+              "thumb": "Campanhas",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 1,
+              "nome": "Pottencialize",
+              "descricao": "Indicadores-chave do programa Pottenccialize.",
+              "thumb": "Pottencialize",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 2,
+              "nome": "KPIs Qualidade",
+              "descricao": "Métricas de qualidade e conversão dos leads gerados.",
+              "thumb": "Qualidade",
+              "embedUrl": ""
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "nome": "Produto",
+          "descricao": "Desempenho do portfólio e evolução das ofertas.",
+          "paineis": [
+            {
+              "ordem": 0,
+              "nome": "Funil de Vendas",
+              "descricao": "Análise do funil de vendas por produto e etapa.",
+              "thumb": "Funil",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 1,
+              "nome": "Renovação Atualização",
+              "descricao": "Taxas de renovação e atualizações de contratos.",
+              "thumb": "Renovação",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 2,
+              "nome": "KPIs por Produto",
+              "descricao": "KPIs principais detalhados por produto.",
+              "thumb": "KPIs Produto",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 3,
+              "nome": "Pricing",
+              "descricao": "Monitoramento de preços, elasticidade e ajustes.",
+              "thumb": "Pricing",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 4,
+              "nome": "Atuarial",
+              "descricao": "Modelagens atuariais e projeções de carteira.",
+              "thumb": "Atuarial",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 1,
+              "nome": "Renovação Atualização",
+              "descricao": "Taxas de renovação e atualizações de contratos.",
+              "thumb": "Renovação",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 2,
+              "nome": "KPIs por Produto",
+              "descricao": "KPIs principais detalhados por produto.",
+              "thumb": "KPIs Produto",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 3,
+              "nome": "Pricing",
+              "descricao": "Monitoramento de preços, elasticidade e ajustes.",
+              "thumb": "Pricing",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 4,
+              "nome": "Atuarial",
+              "descricao": "Modelagens atuariais e projeções de carteira.",
+              "thumb": "Atuarial",
+              "embedUrl": ""
+            }
+          ]
+        },
+        {
+          "ordem": 4,
+          "nome": "Operações",
+          "descricao": "Gestão operacional e eficiência dos processos.",
+          "paineis": [
+            {
+              "ordem": 0,
+              "nome": "Logística",
+              "descricao": "Status operacional e indicadores de entrega.",
+              "thumb": "Logística",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 1,
+              "nome": "Faturamento",
+              "descricao": "Controle de faturamento e identificação de gargalos.",
+              "thumb": "Faturamento",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 2,
+              "nome": "Prevenção Fraudes",
+              "descricao": "Monitoramento de fraudes e alçadas de aprovação.",
+              "thumb": "Fraudes",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 3,
+              "nome": "Qualidade Operações",
+              "descricao": "Indicadores de qualidade operacional por área.",
+              "thumb": "Qualidade Ops",
+              "embedUrl": ""
+            }
+          ]
+        },
+        {
+          "ordem": 5,
+          "nome": "Tecnologia",
+          "descricao": "Monitoramento de plataformas e operações digitais.",
+          "paineis": [
+            {
+              "ordem": 0,
+              "nome": "Uso das APIs",
+              "descricao": "Consumo, performance e disponibilidade das APIs.",
+              "thumb": "APIs",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 1,
+              "nome": "Monitoramento Carga de Dados",
+              "descricao": "Status das cargas e saúde dos pipelines de dados.",
+              "thumb": "Cargas",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 2,
+              "nome": "Qualidade",
+              "descricao": "Indicadores de qualidade e confiabilidade tecnológica.",
+              "thumb": "Qualidade",
+              "embedUrl": ""
+            }
+          ]
+        },
+        {
+          "ordem": 6,
+          "nome": "Sinistro",
+          "descricao": "Visão completa do ciclo de sinistros.",
+          "paineis": [
+            {
+              "ordem": 0,
+              "nome": "Avisos Expectativas",
+              "descricao": "Abertura de avisos e expectativas de sinistros.",
+              "thumb": "Avisos",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 1,
+              "nome": "Indenizações Recuperado",
+              "descricao": "Pagamentos, recuperações e tempos de atendimento.",
+              "thumb": "Indenizações",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 2,
+              "nome": "Provisionamento",
+              "descricao": "Provisões técnicas e evolução por carteira.",
+              "thumb": "Provisionamento",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 3,
+              "nome": "Sinistralidade",
+              "descricao": "Taxa de sinistralidade por produto e segmento.",
+              "thumb": "Sinistralidade",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 4,
+              "nome": "Resultado",
+              "descricao": "Resultado operacional e margens relacionadas a sinistros.",
+              "thumb": "Resultado",
+              "embedUrl": ""
+            }
+          ]
+        },
+        {
+          "ordem": 7,
+          "nome": "Atendimento",
+          "descricao": "Indicadores de atendimento ao cliente.",
+          "paineis": [
+            {
+              "ordem": 0,
+              "nome": "Classificação de Filas",
+              "descricao": "Distribuição e priorização das filas de atendimento.",
+              "thumb": "Filas",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 1,
+              "nome": "KPIs Atendimento",
+              "descricao": "Níveis de serviço, volumes e satisfação do atendimento.",
+              "thumb": "KPIs Atendimento",
+              "embedUrl": ""
+            },
+            {
+              "ordem": 2,
+              "nome": "Chatbot",
+              "descricao": "Eficiência e resultados dos canais automatizados.",
+              "thumb": "Chatbot",
+              "embedUrl": ""
+            }
+          ]
+        }
+      ];
 
       const themeGrid = document.querySelector("#themeGrid");
       const themeNav = document.querySelector("#themeNav");
@@ -653,18 +927,13 @@
           });
       }
 
-      async function carregarMenu() {
+      function carregarMenu() {
         themeGrid.innerHTML = `<div class="menu-error">Carregando menu...</div>`;
         themeNav.innerHTML = "";
         temaHome = null;
 
         try {
-          const response = await fetch("menu.json", { cache: "no-store" });
-          if (!response.ok) {
-            throw new Error(`Erro ao carregar menu: ${response.status}`);
-          }
-
-          const json = await response.json();
+          const json = Array.isArray(RAW_MENU_DATA) ? RAW_MENU_DATA : [];
           data = normalizarMenu(json);
           temaHome = data.find(
             (item) => item.mostrarNoMenu === false && Array.isArray(item.dashboards) && item.dashboards.length,
@@ -704,7 +973,7 @@
           }
         } catch (error) {
           console.error(error);
-          themeGrid.innerHTML = `<div class="menu-error">Não foi possível carregar o menu. Verifique o arquivo menu.json.</div>`;
+          themeGrid.innerHTML = `<div class="menu-error">Não foi possível carregar o menu. Verifique os dados embutidos.</div>`;
           viewAtual = "themes";
           powerBIFrame.classList.add("hidden");
           embedPlaceholder.classList.add("active");
