@@ -68,7 +68,7 @@
         width: 100%;
         height: auto;
         display: block;
-        max-width: 90%;
+        max-width: 80%;
       }
 
       .nav-items {
@@ -166,6 +166,7 @@
         padding: 12px;
         gap: 16px;
         align-content: start;
+        flex: 1 1 auto;
       }
 
       .theme-card,
@@ -197,9 +198,10 @@
       .panel-card {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
+        width: 100%;
         padding: 16px;
-        min-height: 0;
+        min-height: 320px;
         overflow: hidden;
       }
 
@@ -225,66 +227,24 @@
         border: 1px dashed rgba(242, 112, 32, 0.45);
       }
 
-      #view-panels .panel-card {
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-        min-height: 320px;
-        overflow: hidden;
-      }
-
-      #view-panels .panel-thumb {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border-radius: 12px;
-        background: linear-gradient(135deg, rgba(242, 112, 32, 0.25), rgba(242, 112, 32, 0.55));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--brand-dark);
-        font-weight: 600;
-        flex: 0 0 auto;
-      }
-
-      #view-panels .panel-thumb.placeholder {
-        background: linear-gradient(135deg, rgba(255, 178, 56, 0.25), rgba(157, 116, 27, 0.3));
-        border: 1px dashed rgba(242, 112, 32, 0.45);
-        flex-direction: column;
-      }
-
-      #view-panels .panel-card h4 {
+      .panel-card h4 {
         margin: 8px 0 0;
+        color: var(--brand-orange);
         font-size: clamp(0.9rem, 1.2vw, 1.1rem);
         line-height: 1.25;
         flex: 0 0 auto;
       }
 
-      #view-panels .panel-card p {
-        margin: 0;
-        font-size: clamp(0.78rem, 1vw, 0.95rem);
-        color: #7a7a7a;
-        flex: 1 1 auto;
-        overflow-y: auto;
-      }
-
-
-      .panel-card h4 {
-        margin: 0;
-        color: var(--brand-orange);
-        font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-        line-height: 1.2;
-      }
-
       .panel-card p {
         margin: 0;
-        font-size: clamp(0.75rem, 1vw, 0.95rem);
+        font-size: clamp(0.78rem, 1vw, 0.95rem);
         color: #7a7a7a;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
-        overflow: hidden;
+        flex: 1 1 auto;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
 
       .theme-submenu {
@@ -330,6 +290,16 @@
         box-shadow: 0 18px 35px -25px rgba(0, 0, 0, 0.25);
       }
 
+      .panel-empty {
+        background: #fff;
+        border-radius: var(--card-radius);
+        padding: 24px;
+        text-align: center;
+        color: var(--brand-dark);
+        font-weight: 600;
+        box-shadow: 0 18px 35px -25px rgba(0, 0, 0, 0.15);
+      }
+
       .theme-empty {
         margin: 14px 0 0;
         font-size: 13px;
@@ -342,17 +312,12 @@
         grid-template-columns: repeat(4, minmax(220px, 1fr));
         gap: 16px;
         padding: 16px;
+        flex: 1 1 auto;
         height: 100%;
         overflow-y: auto;
         grid-auto-rows: calc((100vw - 160px) / 5); /* mesma altura da largura das colunas */
         align-items: start;
       }
-
-      #view-panels .panel-grid {
-        flex: 1 1 auto;
-      }
-
-
       .embed-wrapper {
         display: flex;
         flex-direction: column;
@@ -362,13 +327,6 @@
         padding: 0px;
         box-sizing: border-box;
       }
-
-      #view-themes .theme-grid,
-      #view-panels .panel-grid,
-      #view-embed .embed-wrapper {
-        flex: 1 1 auto;
-      }
-
       .embed-wrapper iframe {
         width: 100%;
         height: 100%;
@@ -551,6 +509,7 @@
       let temaAtual = null;
       let painelAtual = null;
       let viewAtual = "themes";
+      let temaHome = null;
 
       function ajustarFonteMenu() {
         if (!navItemsContainer) return;
@@ -638,30 +597,57 @@
           .map((item, index) => {
             const temaNome = item?.nome ?? `Tema ${index + 1}`;
             const temaSlug = slugify(temaNome) || `tema-${index + 1}`;
-            const dashboards = Array.isArray(item?.paineis)
-              ? item.paineis
-                  .slice()
-                  .sort((a, b) => (a?.ordem ?? 0) - (b?.ordem ?? 0))
-                  .map((painel, painelIndex) => {
-                    const painelNome = painel?.nome ?? `Painel ${painelIndex + 1}`;
-                    const painelSlug =
-                      slugify(painelNome) || `${temaSlug}-painel-${painelIndex + 1}`;
-                    const thumbBase = painel?.thumb ?? painelNome.split(" ").slice(0, 2).join(" ");
-                    return {
-                      id: painelSlug,
-                      titulo: painelNome.toUpperCase(),
-                      descricao: painel?.descricao ?? "Descrição em breve.",
-                      thumb: thumbBase || "Painel",
-                      embedUrl: painel?.embedUrl ?? "",
-                    };
-                  })
-              : [];
+            const possuiPaineis = Array.isArray(item?.paineis);
+            const possuiEmbedDireto = Object.prototype.hasOwnProperty.call(item ?? {}, "embedUrl");
+
+            const descricaoBase = item?.descricao ?? "Descrição em breve.";
+            let mostrarNoMenu = item?.mostrarNoMenu;
+            if (mostrarNoMenu === undefined) {
+              mostrarNoMenu = true;
+            }
+
+            let dashboards = [];
+
+            if (possuiPaineis) {
+              dashboards = item.paineis
+                .slice()
+                .sort((a, b) => (a?.ordem ?? 0) - (b?.ordem ?? 0))
+                .map((painel, painelIndex) => {
+                  const painelNome = painel?.nome ?? `Painel ${painelIndex + 1}`;
+                  const painelSlug =
+                    slugify(painelNome) || `${temaSlug}-painel-${painelIndex + 1}`;
+                  const thumbBase =
+                    painel?.thumb ?? painelNome.split(" ").slice(0, 2).join(" ");
+                  return {
+                    id: painelSlug,
+                    titulo: painelNome.toUpperCase(),
+                    descricao: painel?.descricao ?? "Descrição em breve.",
+                    thumb: thumbBase || "Painel",
+                    embedUrl: painel?.embedUrl ?? "",
+                  };
+                });
+            } else if (possuiEmbedDireto) {
+              const painelNome = item?.nome ?? `Painel ${index + 1}`;
+              const thumbBase =
+                item?.thumb ?? painelNome.split(" ").slice(0, 2).join(" ");
+              dashboards = [
+                {
+                  id: `${temaSlug}-painel-principal`,
+                  titulo: painelNome.toUpperCase(),
+                  descricao: descricaoBase,
+                  thumb: thumbBase || "Painel",
+                  embedUrl: item?.embedUrl ?? "",
+                },
+              ];
+              mostrarNoMenu = item?.mostrarNoMenu ?? false;
+            }
 
             return {
               id: temaSlug,
               nome: temaNome.toUpperCase(),
-              descricao: item?.descricao ?? "Descrição em breve.",
+              descricao: descricaoBase,
               dashboards,
+              mostrarNoMenu,
             };
           });
       }
@@ -669,6 +655,7 @@
       async function carregarMenu() {
         themeGrid.innerHTML = `<div class="menu-error">Carregando menu...</div>`;
         themeNav.innerHTML = "";
+        temaHome = null;
 
         try {
           const response = await fetch("menu.json", { cache: "no-store" });
@@ -678,6 +665,9 @@
 
           const json = await response.json();
           data = normalizarMenu(json);
+          temaHome = data.find(
+            (item) => item.mostrarNoMenu === false && Array.isArray(item.dashboards) && item.dashboards.length,
+          ) ?? null;
 
           if (!data.length) {
             themeGrid.innerHTML = `<div class="menu-error">Nenhum item de menu encontrado.</div>`;
@@ -688,21 +678,35 @@
 
           temaAtual = null;
           painelAtual = null;
-          panelGrid.innerHTML = "";
-          powerBIFrame.src = "";
-          powerBIFrame.classList.remove("hidden");
-          embedPlaceholder.classList.remove("active");
-          embedPlaceholderTitle.textContent = "Power BI em breve";
-          embedPlaceholderMessage.textContent = "Estamos preparando o link deste painel no Power BI. Tente novamente mais tarde.";
           setActiveNav(null);
           renderThemes();
-          alternarView("themes");
+
+          const primeiroVisivel = data.find(
+            (item) => item.mostrarNoMenu !== false && Array.isArray(item.dashboards) && item.dashboards.length,
+          );
+          const fallbackComPainel = data.find((item) => Array.isArray(item.dashboards) && item.dashboards.length);
+          const destinoInicial = temaHome ?? primeiroVisivel ?? fallbackComPainel ?? null;
+
+          if (destinoInicial) {
+            const deveAbrirPainel = destinoInicial === temaHome || destinoInicial.mostrarNoMenu === false;
+            selecionarTema(destinoInicial.id, { abrirPrimeiroPainel: deveAbrirPainel });
+          } else {
+            panelGrid.innerHTML = "";
+            powerBIFrame.src = "";
+            powerBIFrame.classList.add("hidden");
+            embedPlaceholder.classList.add("active");
+            embedPlaceholderTitle.textContent = "Selecione um painel";
+            embedPlaceholderMessage.textContent = "Escolha um painel para visualizar o relatório do Power BI.";
+            viewAtual = "themes";
+            alternarView("themes");
+            atualizarLinkAjuda();
+          }
         } catch (error) {
           console.error(error);
           themeGrid.innerHTML = `<div class="menu-error">Não foi possível carregar o menu. Verifique o arquivo menu.json.</div>`;
           viewAtual = "themes";
-          powerBIFrame.classList.remove("hidden");
-          embedPlaceholder.classList.remove("active");
+          powerBIFrame.classList.add("hidden");
+          embedPlaceholder.classList.add("active");
           embedPlaceholderTitle.textContent = "Power BI em breve";
           embedPlaceholderMessage.textContent = "Estamos preparando o link deste painel no Power BI. Tente novamente mais tarde.";
           atualizarLinkAjuda();
@@ -721,16 +725,26 @@
 
         if (!data.length) {
           themeGrid.innerHTML = `<div class="menu-error">Nenhum item de menu encontrado.</div>`;
+          ajustarFonteMenu();
           return;
         }
 
-        data.forEach((theme) => {
+        const temasVisiveis = data.filter((theme) => theme.mostrarNoMenu !== false);
+
+        if (!temasVisiveis.length) {
+          themeGrid.innerHTML = `<div class="menu-error">Nenhum menu disponível para navegação.</div>`;
+          ajustarFonteMenu();
+          return;
+        }
+
+        temasVisiveis.forEach((theme) => {
           const card = document.createElement("article");
           card.className = "theme-card";
-          const hasDashboards = theme.dashboards.length > 0;
-          const subItems = theme.dashboards
-            .map(
-              (dash) => `
+          const hasDashboards = Array.isArray(theme.dashboards) && theme.dashboards.length > 0;
+          const subItems = hasDashboards
+            ? theme.dashboards
+                .map(
+                  (dash) => `
                 <li>
                   <button
                     type="button"
@@ -742,8 +756,9 @@
                   </button>
                 </li>
               `,
-            )
-            .join("");
+                )
+                .join("")
+            : "";
 
           const submenuMarkup = hasDashboards
             ? `<ul class="theme-submenu">
@@ -770,18 +785,18 @@
           card.addEventListener("click", () => selecionarTema(theme.id));
           themeGrid.appendChild(card);
 
-        const navButton = document.createElement("button");
-        navButton.className = "nav-button";
-        navButton.textContent = theme.nome;
-        navButton.addEventListener("click", () => selecionarTema(theme.id));
-        navButton.dataset.theme = theme.id;
-        themeNav.appendChild(navButton);
-      });
+          const navButton = document.createElement("button");
+          navButton.className = "nav-button";
+          navButton.textContent = theme.nome;
+          navButton.dataset.theme = theme.id;
+          navButton.addEventListener("click", () => selecionarTema(theme.id));
+          themeNav.appendChild(navButton);
+        });
 
-      ajustarFonteMenu();
+        ajustarFonteMenu();
       }
 
-      function selecionarTema(themeId) {
+      function selecionarTema(themeId, { abrirPrimeiroPainel = false } = {}) {
         const theme = data.find((item) => item.id === themeId);
         if (!theme) return;
 
@@ -789,28 +804,38 @@
         painelAtual = null;
 
         panelGrid.innerHTML = "";
-        theme.dashboards.forEach((dash) => {
-          const embedUrl = dash.embedUrl && String(dash.embedUrl).trim();
-          const hasEmbed = Boolean(embedUrl);
-          const thumbMarkup = hasEmbed
-            ? `<div class="panel-thumb">${dash.thumb}</div>`
-            : `<div class="panel-thumb placeholder" aria-label="Power BI em breve"><span class="placeholder-icon" aria-hidden="true"></span><span class="placeholder-label">Em breve</span></div>`;
+        const dashboards = Array.isArray(theme.dashboards) ? theme.dashboards : [];
 
-          const card = document.createElement("article");
-          card.className = "panel-card";
-          card.dataset.hasEmbed = hasEmbed;
-          card.innerHTML = `
-            ${thumbMarkup}
-            <h4>${dash.titulo}</h4>
-            <p>${dash.descricao}</p>
-          `;
-          card.addEventListener("click", () => selecionarPainel(dash.id));
-          panelGrid.appendChild(card);
-        });
+        if (!dashboards.length) {
+          panelGrid.innerHTML = `<div class="panel-empty">Nenhum painel cadastrado para este tema.</div>`;
+        } else {
+          dashboards.forEach((dash) => {
+            const embedUrl = dash.embedUrl && String(dash.embedUrl).trim();
+            const hasEmbed = Boolean(embedUrl);
+            const thumbMarkup = hasEmbed
+              ? `<div class="panel-thumb">${dash.thumb}</div>`
+              : `<div class="panel-thumb placeholder" aria-label="Power BI em breve"><span class="placeholder-icon" aria-hidden="true"></span><span class="placeholder-label">Em breve</span></div>`;
+
+            const card = document.createElement("article");
+            card.className = "panel-card";
+            card.dataset.hasEmbed = hasEmbed;
+            card.innerHTML = `
+              ${thumbMarkup}
+              <h4>${dash.titulo}</h4>
+              <p>${dash.descricao}</p>
+            `;
+            card.addEventListener("click", () => selecionarPainel(dash.id));
+            panelGrid.appendChild(card);
+          });
+        }
 
         setActiveNav(theme.id);
 
-        alternarView("panels");
+        if (abrirPrimeiroPainel && dashboards.length) {
+          selecionarPainel(dashboards[0].id);
+        } else {
+          alternarView("panels");
+        }
       }
 
       function selecionarPainel(panelId) {
@@ -851,17 +876,30 @@
       document.querySelectorAll('[data-action="go-home"]').forEach((button) => {
         button.addEventListener("click", (event) => {
           event.preventDefault();
+          if (temaHome) {
+            selecionarTema(temaHome.id, { abrirPrimeiroPainel: true });
+            return;
+          }
+
+          const fallbackTema = data.find(
+            (item) => item.mostrarNoMenu !== false && Array.isArray(item.dashboards) && item.dashboards.length,
+          );
+
+          if (fallbackTema) {
+            selecionarTema(fallbackTema.id);
+            return;
+          }
+
           temaAtual = null;
           painelAtual = null;
           panelGrid.innerHTML = "";
           powerBIFrame.src = "";
-          powerBIFrame.classList.remove("hidden");
-          embedPlaceholder.classList.remove("active");
-          embedPlaceholderTitle.textContent = "Power BI em breve";
-          embedPlaceholderMessage.textContent = "Estamos preparando o link deste painel no Power BI. Tente novamente mais tarde.";
+          powerBIFrame.classList.add("hidden");
+          embedPlaceholder.classList.add("active");
+          embedPlaceholderTitle.textContent = "Selecione um painel";
+          embedPlaceholderMessage.textContent = "Escolha um painel para visualizar o relatório do Power BI.";
           setActiveNav(null);
           alternarView("themes");
-          ajustarFonteMenu();
         });
       });
 

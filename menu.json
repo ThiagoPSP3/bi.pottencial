@@ -1,6 +1,12 @@
 [
   {
     "ordem": 0,
+    "nome": "Home",
+    "descricao": "Painel Com informações gerais para estar na home",
+    "embedUrl": ""
+  },
+  {
+    "ordem": 1,
     "nome": "Comercial",
     "descricao": "Resultados comerciais e acompanhamento estratégico.",
     "paineis": [
@@ -35,7 +41,7 @@
     ]
   },
   {
-    "ordem": 1,
+    "ordem": 2,
     "nome": "Marketing",
     "descricao": "Campanhas, captação e qualidade dos leads.",
     "paineis": [
@@ -63,7 +69,7 @@
     ]
   },
   {
-    "ordem": 2,
+    "ordem": 3,
     "nome": "Produto",
     "descricao": "Desempenho do portfólio e evolução das ofertas.",
     "paineis": [
@@ -101,11 +107,67 @@
         "descricao": "Modelagens atuariais e projeções de carteira.",
         "thumb": "Atuarial",
         "embedUrl": ""
+      },
+      {
+        "ordem": 1,
+        "nome": "Renovação Atualização",
+        "descricao": "Taxas de renovação e atualizações de contratos.",
+        "thumb": "Renovação",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 2,
+        "nome": "KPIs por Produto",
+        "descricao": "KPIs principais detalhados por produto.",
+        "thumb": "KPIs Produto",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 3,
+        "nome": "Pricing",
+        "descricao": "Monitoramento de preços, elasticidade e ajustes.",
+        "thumb": "Pricing",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 4,
+        "nome": "Atuarial",
+        "descricao": "Modelagens atuariais e projeções de carteira.",
+        "thumb": "Atuarial",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 1,
+        "nome": "Renovação Atualização",
+        "descricao": "Taxas de renovação e atualizações de contratos.",
+        "thumb": "Renovação",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 2,
+        "nome": "KPIs por Produto",
+        "descricao": "KPIs principais detalhados por produto.",
+        "thumb": "KPIs Produto",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 3,
+        "nome": "Pricing",
+        "descricao": "Monitoramento de preços, elasticidade e ajustes.",
+        "thumb": "Pricing",
+        "embedUrl": ""
+      },
+      {
+        "ordem": 4,
+        "nome": "Atuarial",
+        "descricao": "Modelagens atuariais e projeções de carteira.",
+        "thumb": "Atuarial",
+        "embedUrl": ""
       }
     ]
   },
   {
-    "ordem": 3,
+    "ordem": 4,
     "nome": "Operação",
     "descricao": "Eficiência operacional e gestão de processos.",
     "paineis": [
@@ -140,7 +202,7 @@
     ]
   },
   {
-    "ordem": 4,
+    "ordem": 5,
     "nome": "Tecnologia",
     "descricao": "Monitoramento de plataformas e operações digitais.",
     "paineis": [
@@ -168,7 +230,7 @@
     ]
   },
   {
-    "ordem": 5,
+    "ordem": 6,
     "nome": "Sinistro",
     "descricao": "Visão completa do ciclo de sinistros.",
     "paineis": [
@@ -210,7 +272,7 @@
     ]
   },
   {
-    "ordem": 6,
+    "ordem": 7,
     "nome": "Atendimento",
     "descricao": "Indicadores de atendimento ao cliente.",
     "paineis": [
